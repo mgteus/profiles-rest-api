@@ -21,7 +21,7 @@ class UserProfileManager(BaseUserManager):
         user.save(using=self._db)                                       #saving in db=data base
         return user
 
-    def create_super_user(self, emial, name, password):               #Password not None means you need a password to use this function
+    def create_superuser(self, email, name, password):               #Password not None means you need a password to use this function
         """Creates and asves a new super User"""
 
         user = self.create_user(email, name, password)
@@ -29,6 +29,7 @@ class UserProfileManager(BaseUserManager):
         user.is_staff     = True                                        ##is_staff defined by django, it gives the user "powers"
         user.save(using=self._db)                                       #saving in db=data base
 
+        return user
 
 
 
@@ -53,7 +54,7 @@ class UserProfile( AbstractBaseUser, PermissionsMixin):
         return self.name
 
     def get_short_name(self):
-        """User to get a user shor name"""
+        """User to get a user short name"""
         return self.name
 
     def __str__(self):
